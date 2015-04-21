@@ -121,8 +121,8 @@ public class KryoSerializer implements NimrodObjectSerializationInterface {
     		return ((String)o).getBytes();
     	} else {
     		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-    		//Output output = new Output(stream);
-    		UnsafeMemoryOutput output = new UnsafeMemoryOutput(stream);
+    		Output output = new Output(stream);
+    		//UnsafeMemoryOutput output = new UnsafeMemoryOutput(stream);
     		kryo.writeObject(output, o);
     		output.close();
     		return stream.toByteArray();
@@ -135,8 +135,8 @@ public class KryoSerializer implements NimrodObjectSerializationInterface {
     		return new String(b);
     	} else {
     		ByteArrayInputStream stream = new ByteArrayInputStream(b);
-    		//Input input = new Input(stream);
-    		UnsafeMemoryInput input = new UnsafeMemoryInput(stream);
+    		Input input = new Input(stream);
+    		//UnsafeMemoryInput input = new UnsafeMemoryInput(stream);
     		Object result = kryo.readObject(input, c);
     		input.close();
     		return result;
