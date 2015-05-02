@@ -66,7 +66,9 @@ public abstract class QueueExecutor implements UncaughtExceptionHandler {
     protected ThreadPoolExecutor serviceThreads;
     // Different ways of assigning this value..start with a default which can be
     // override thru commandline vm args
-    private int threadPoolSize = System.getProperty("subscriptionThreadPoolSize") != null ? Integer.parseInt(System.getProperty("subscriptionThreadPoolSize")) : (Runtime.getRuntime().availableProcessors() / 2);
+    private int threadPoolSize = System.getProperty("subscriptionThreadPoolSize") != null
+        ? Integer.parseInt(System.getProperty("subscriptionThreadPoolSize"))
+        : Math.max(Runtime.getRuntime().availableProcessors() / 2, 1);
 
     public int getThreadPoolSize() {
         return threadPoolSize;
